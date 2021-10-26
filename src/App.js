@@ -1,16 +1,35 @@
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-// import Home from "./components/Home/Home/Home";
+import Home from "./components/Home/Home/Home";
 import Layout from "./components/Layout/Layout";
 import Login from "./components/Login/Login";
-// import Signup from "./components/Signup/Signup/Signup";
-
+import Quiz from "./components/Quiz/Quiz/Quiz";
+import Result from "./components/Result/Result/Result";
+import Signup from "./components/Signup/Signup/Signup";
+import { AuthProvider } from "./contexts/AuthContext";
 function App() {
   return (
-    <Layout>
-      {/* <Home /> */}
-      {/* <Signup /> */}
-      <Login />
-    </Layout>
+    <Router>
+      <AuthProvider>
+        <Layout>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/quiz">
+              <Quiz />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Result />
+          </Switch>
+        </Layout>
+      </AuthProvider>
+    </Router>
   );
 }
 
